@@ -81,4 +81,72 @@ func main() {
 	} else {
 		fmt.Println("a is not 40 or 41")
 	}
+
+	// Another type of conditional is the switch statement
+	// A switch statement with no conditional statement will evaluate the truthfulness of each case
+	switch {
+	case false:
+		fmt.Println("This case should not print")
+	case (1 == 2):
+		fmt.Println("This case should not print too")
+	case (1 == 1):
+		fmt.Println("This case will print")
+	case (2 == 2):
+		fmt.Println("This case will not print because there is no default fall through in GO")
+	default:
+		fmt.Println("will not print")
+	}
+
+	// Fallthrough has to be manually indicated
+	switch {
+	case (1 == 1):
+		fmt.Println("1st message")
+		fallthrough
+	case (2 == 2):
+		fmt.Println("2nd messages - indicates successful fallthrough")
+	}
+
+
+	// Fallthrough is potentially problematic because it will always execute the statement block of the next case regardless of its conditional's truthfulness
+	switch {
+	case (1 == 2):
+		fmt.Println("shouldn't print")
+	case (1 == 1):
+		fmt.Println("should print - fallthrough initiated")
+		fallthrough
+	case (1 == 2):
+		fmt.Println("shouldn't print, but does")
+	case (2 == 2):
+		fmt.Println("shouldn't print - because thereis no fallthrough in the case above")
+	case (1 == 2):
+		fmt.Println("shouldn't print, but does")
+	}
+
+	// You can also switch on a value
+	phrase := "Engage!"
+	switch phrase {
+	case "Not now, Bones!":
+		fmt.Println("James T. Kirk")
+	case "Coffee first!":
+		fmt.Println("Kathryn Janeway")
+	case "Engage!":
+		fmt.Println("Jean L. Picard")
+	case "Jako!":
+		fmt.Println("Benjamin L. Sisco")
+	}
+
+	// You can also write a switch statement with multiple matching cases
+	phrase = "Hello, old man."
+	switch phrase {
+	case "Not now, Bones!", "Scotty, beam me up.":
+		fmt.Println("James T. Kirk")
+	case "Coffee first!":
+		fmt.Println("Kathryn Janeway")
+	case "Engage!", "Make it so!":
+		fmt.Println("Jean L. Picard")
+	case "Jako!", "Hello, old man.":
+		fmt.Println("Benjamin L. Sisko")
+	}
+
+
 }
